@@ -15,15 +15,12 @@ public class menu {
         System.out.println("2. Show all todos");
         System.out.println("3. Delete a todo");
         System.out.println("4. Exit.");
+		System.out.print("Select an option: ");
 	    Scanner sc = new Scanner(System.in);
 		String aux = sc.nextLine();
 		int numero = aToiManual(aux);
 		if (numero == 0) {menuPrincipal();}
 		return numero;
-
-
-
-
 
 	}
 	//Funcion that recive a string and returns a number between 1 and 4
@@ -32,7 +29,7 @@ public class menu {
         try {
             numero = Integer.parseInt(aux);
         } catch (NumberFormatException e) {
-            System.out.println("Error, introduce un número entre 1 y 4");
+            System.out.println("Error, introduce un número...");
             return 0;
         }
         return numero;
@@ -40,65 +37,58 @@ public class menu {
 
 	public MyTodo createNewTodo() {
 		Scanner sc = new Scanner(System.in);
-		System.out.println("Name: ");
+		System.out.print("Name: ");
 		String name = sc.nextLine();
-		System.out.println("Importance (1-4): ");
+		System.out.print("Importance (1-4): ");
 		String importance = sc.nextLine();
 		int importanNum = aToiManual(importance);
 		if (importanNum == 0) {createNewTodo();}
 		return  new MyTodo(name, importanNum);
 	}
 
-	public void showAllTodos(LinkedList<MyTodo> llista){
+	public void showAllTodos(LinkedList<MyTodo> llista) {
 		for (MyTodo todo : llista) {
 			switch (todo.getImportance()) {
 				case 1:
 					System.out.print(Color.WHITE);
 					//System.out.print(Color.BLUE_BACKGROUND);
-					System.out.println(todo.getName() + " " + todo.getImportance());
+					System.out.println(llista.indexOf(todo) + "|   " + todo.getName() + " " + todo.getImportance());
 					System.out.print(Color.RESET);
 					break;
 				case 2:
 					System.out.print(Color.YELLOW);
 					System.out.print(Color.BLUE_BACKGROUND);
-					System.out.println(todo.getName() + " " + todo.getImportance());
+					System.out.println(llista.indexOf(todo) + "|   " + todo.getName() + " " + todo.getImportance());
 					System.out.print(Color.RESET);
 					break;
 				case 3:
 					System.out.print(Color.CYAN);
 					System.out.print(Color.BLUE_BACKGROUND);
-					System.out.println(todo.getName() + " " + todo.getImportance());
+					System.out.println(llista.indexOf(todo) + "|   " + todo.getName() + " " + todo.getImportance());
 					System.out.print(Color.RESET);
 					break;
 				case 4:
 					System.out.print(Color.RED);
 					System.out.print(Color.WHITE_BACKGROUND);
-					System.out.println(todo.getName() + " " + todo.getImportance());
+					System.out.println(llista.indexOf(todo) + "|   " + todo.getName() + " " + todo.getImportance());
 					System.out.print(Color.RESET);
 					break;
 			}
 		}
-
 	}
 
+	public int selectOneToDelete(LinkedList<MyTodo> llistaTodos) {
+		System.out.print("Select the todo you want to delete: ");
+		Scanner sc = new Scanner(System.in);
+		String aux = sc.nextLine();
+		int numero = aToiManual(aux);
+		if (llistaTodos.get(numero) == null) {
+			System.out.println("Error no existe...");
+			selectOneToDelete(llistaTodos);
+		}
+		return numero;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+	}
 
 
 

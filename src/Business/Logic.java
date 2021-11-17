@@ -25,10 +25,11 @@ public class Logic {
 					vistaMenu.showAllTodos(llistaTodos);
 					break;
 				case 3:
-					System.out.println("Delete a todo");
+					deleteOne(vistaMenu.selectOneToDelete(llistaTodos));
 					break;
 				case 4:
-					System.out.println("Exit");
+					System.out.println("Exiting...");
+					System.exit(0);
 					break;
 			}
 
@@ -39,6 +40,9 @@ public class Logic {
 	void addTodo(MyTodo todo) {
         llistaTodos.add(todo);
     }
+	void deleteOne(int index){
+		llistaTodos.remove(index);
+	}
 
 
 
