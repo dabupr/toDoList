@@ -1,10 +1,15 @@
 package Business;
 
+import Business.Entity.MyTodo;
 import Presentation.View.menu;
 
-public class Logic {
+import java.util.LinkedList;
 
-	public Logic() {
+public class Logic {
+	LinkedList<MyTodo> llistaTodos;
+
+	public Logic(LinkedList<MyTodo> llista) {
+		this.llistaTodos = llista;
 	}
 
 	public void startProgram() {
@@ -14,11 +19,10 @@ public class Logic {
 			 numero = vistaMenu.menuPrincipal();
 			switch (numero) {
 				case 1:
-					vistaMenu.createNewTodo();
+					addTodo(vistaMenu.createNewTodo());
 					break;
 				case 2:
-					System.out.println("Showing all todos");
-
+					vistaMenu.showAllTodos(llistaTodos);
 					break;
 				case 3:
 					System.out.println("Delete a todo");
@@ -31,4 +35,11 @@ public class Logic {
 
 		}
 	}
+
+	void addTodo(MyTodo todo) {
+        llistaTodos.add(todo);
+    }
+
+
+
 }

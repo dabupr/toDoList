@@ -1,15 +1,15 @@
 package Business.Entity;
 
-public class todo {
+public class MyTodo {
 	String nom;
 	int importance;
 
-	public todo(String nom, int importance) {
+	public MyTodo(String nom, int importance) {
         this.nom = nom;
         this.importance = importance;
     }
 
-    public String getNom() {
+    public String getName() {
         return nom;
     }
 
